@@ -6,20 +6,19 @@ var Schema = mongoose.Schema;
 // Using the Schema constructor, create a new NoteSchema object
 // This is similar to a Sequelize model
 var NoteSchema = new Schema({
-  // `title` is of type String
-  title: {
-    type: String
-  },
   // `body` is of type String
   body: {
-    type: String
+    type: String,
+    required: true,
+    trim: true
   },
   // `article` is an object that stores a article id
   // The ref property links the ObjectId to the article model
   // This allows us to populate the article with an associated article
   article: {
     type: Schema.Types.ObjectId,
-    ref: 'Article'
+    ref: 'Article',
+    requred: true
   }
 });
 

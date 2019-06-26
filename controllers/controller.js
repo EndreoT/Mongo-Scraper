@@ -62,7 +62,7 @@ exports.getAllArticles = function (req, res) {
 };
 
 // Route for grabbing a specific Article by id, populate it with it's note
-app.get('/articles/:id', function (req, res) {
+exports.getArticle = function (req, res) {
   // TODO
   // ====
   // Finish the route so it finds one article using the req.params.id,
@@ -70,35 +70,43 @@ app.get('/articles/:id', function (req, res) {
   // then responds with the article with the note included
   Article
     .findOne({ _id: req.params.id })
-    // .populate('note')
+    .populate('notes')
     .then(article => {
       return res.json(article);
     }).catch(err => {
       console.log(err);
       res.json(err);
     });
-});
+};
 
 // Route for saving/updating an Article's associated Note
-app.post('/articles/:id', function (req, res) {
+exports.saveNote = function (req, res) {
   // TODO
   // ====
   // save the new note that gets posted to the Notes collection
   // then find an article from the req.params.id
   // and update it's "note" property with the _id of the new note
   const articleId = req.params.id;
+  const note = {
+    body: req.body.body,
+    article: articleId,
+  };
   Note
-    .create(req.body)
-    .then((note) => {
-      Note.findByIdAndUpdate(note._id, {
-        $set: {
-          article: articleId
-        }
-      }, { new: true }).then(note => {
-        return res.json(note);
-      });
-    }).catch(err => {
+    .create(note)
+    // .then((note) => {
+    //   Note.findByIdAndUpdate(note._id, {
+    //     $set: {
+    //       article: articleId
+    //     }
+    //   }, { new: true }).then(note => {
+    //     return res.json(note);
+    //   });
+    // })
+    .then(note => {
+      res.json(note);
+    })
+    .catch(err => {
       console.log(err);
       res.json(err);
     });
-});
+};

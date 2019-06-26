@@ -24,9 +24,10 @@ var ArticleSchema = new Schema({
 }, { toJSON: { virtuals: true } }
 );
 
+// Reverse population lookup since Note models have an article id property
 ArticleSchema.virtual('notes', {
   ref: 'Note', // The model to use
-  localField: 'notes', // Your local field, like a `FOREIGN KEY` in RDS
+  localField: '_id', // Your local field, like a `FOREIGN KEY` in RDS
   foreignField: 'article', // Your foreign field which `localField` linked to. Like `REFERENCES` in RDS
   // If `justOne` is true, 'members' will be a single doc as opposed to
   // an array. `justOne` is false by default.
