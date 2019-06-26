@@ -1,0 +1,250 @@
+<body>
+  <div class="w3-top">
+    <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+      <a><b>Divvy</b></a>
+    </div>
+  </div>
+
+  <!-- PARALLX\AX -->
+  <div class="parallax"></div>
+
+  {{!-- PAGE CONTAINER --}}
+  <div class="container">
+
+    <!-- DIVVY TITLE -->
+    <div class="image-container">
+      {{!-- <div class="zoom"> --}}
+      <div id="myBtn" class="zoom" class="text">Divvy</div>
+      {{!-- </div> --}}
+    </div>
+
+    <!-- OPENING MODAL -->
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="w3-container w3-padding-32" id="contact">
+          <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16" id="divvyfont">
+            Welcome to Divvy
+          </h3>
+          <center>
+            <h4 id="divvyfont2">A household bill tracking app.</h4>
+            <div class="signInsignUpBtns">
+              <button id="signin" class="btn btn-dark" type="submit">
+                <i class="fa fa-paper-plane"></i>Sign in
+              </button>
+              <button id="signup" class="btn btn-dark" type="submit">
+                <i class="fa fa-paper-plane"></i>Sign up
+              </button>
+            </div>
+          </center>
+
+          <!-- SIGN UP -->
+          <form id="signupform">
+            <center>
+              <div class="signupform">
+                <h1 class="signuptitle">Sign up</h1>
+                <label for="name" class="signupfirstname"><b>First Name</b></label>
+                <input type="text" id="signupfirstname" placeholder="Your name" name="name" required>
+
+                <label for="name" class="signuplastname"><b>Last Name</b></label>
+                <input type="text" id="signuplastname" placeholder="Your name" name="name" required>
+
+                <label for="email" class="signupemail"><b>Email</b></label>
+                <input type="text" id="signupemail" placeholder="Your email" name="email" required>
+
+                <label for="phone" class="signupphone"><b>Phone</b></label>
+                <input type="text" id="signupphone" placeholder="Your phone number" name="phone" required>
+
+                <label for="password" class="signuppassword"><b>Password</b></label>
+                <input type="text" id="signuppassword" placeholder="Your password" name="password" required>
+
+                <div class="clearfix">
+                  <button type="submit" class="btn btn-dark" id="signupbutton">Sign up</button>
+                  <button type="submit" class="btn btn-dark">Cancel</button>
+                </div>
+              </div>
+            </center>
+          </form>
+
+          <!-- SIGN IN -->
+          <form id="signinform">
+            <center>
+              <div class="signin">
+                <h1 class="signintitle">Sign in</h1>
+                <label for="email" class="signinemail"><b>Email</b></label>
+                <input type="text" placeholder="Your email" name="email" id="signinemail" required>
+                <label for="name" class="signuppassword"><b>Password</b></label>
+                <input type="text" placeholder="Your password" name="name" id="signinpassword" required>
+                <div class="clearfix">
+                  <div>
+                    <button type="submit" class="btn btn-dark" id="signinbutton">Sign in</button>
+                    <button type="submit" class="btn btn-dark">Cancel</button>
+                  </div>
+                </div>
+              </div>
+            </center>
+          </form>
+          {{!-- closing opening modal divs --}}
+        </div>
+      </div>
+    </div>
+
+    {{!-- ADD A BILL CARD --}}
+    <div class="card" id="addbillcard">
+      <div class="card-body-addbill">
+        Add a bill,
+      </div>
+      <div class="username"></div>
+      <hr>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="formGroupExampleInput" class="formlabel">Bill</label>
+            <input type="text" class="form-control" id="inputbill" placeholder="Enter bill title" required>
+          </div>
+          <div class="form-group">
+            <label for="formGroupExampleInput2" class="formlabel">Bill company</label>
+            <input type="text" class="form-control" id="inputcompany" placeholder="Enter bill company" required>
+          </div>
+          <div class="form-group">
+            <label for="formGroupExampleInput2" class="formlabel">Bill total</label>
+            <input type="number" class="form-control" id="inputprice" placeholder="Enter bill price" required>
+          </div>
+
+
+        </div>
+
+        <div class="col-md-6">
+          <img src="images/bill-image.png" alt="bills" width="300" height="300">
+        </div>
+
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="formGroupExampleInput2" class="formlabel">Portion owed</label>
+            <input type="number" class="form-control" id="price-you-owe" placeholder="Enter amount you owe" required>
+          </div>
+          <form action="/action_page.php" method="get">
+            <h5 class="paidyet">Been paid?</h5>
+            <hr>
+            <input type="radio" name="bill" value="true" class="paid"> Bill is paid<br>
+            <input type="radio" name="bill" value="false" class="paid" checked> Bill is unpaid<br>
+          </form>
+        </div>
+        {{!-- end of row --}}
+      </div>
+      <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+          <button type="submit" class="btn btn-dark" id="addbillsubmit">Create Bill</button>
+        </div>
+        <div class="col-md-3"></div>
+      </div>
+      {{!-- end of add bill card --}}
+    </div>
+
+    {{!-- ADD PAYERS MODAL --}}
+    <div id="modal2" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="w3-container w3-padding-32" id="contact">
+          <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16" id="divvyfont">
+            Add payers
+          </h3>
+          <center>
+            <form>
+              <div class="form-group">
+                <label for="formGroupExampleInput" class="formlabel">Enter each payer's email.</label>
+                <input type="text" class="form-control" id="inputemail" placeholder="Enter email" style="width: 50%">
+              </div>
+            </form>
+            <table id="emails">
+              <tbody id="tbodyemails">
+                <thead>
+                  <tr>
+                    <div class="row">
+                      <div>
+                        <th id="addPayersEmail">Payer information:</th>
+                      </div>
+                    </div>
+                  </tr>
+                </thead>
+              </tbody>
+            </table>
+            {{!-- buttons on add payers modal --}}
+            <button type="submit" class="btn btn-dark" id="addUserEmail">Add payer</button>
+            <button type="submit" class="btn btn-dark" id="addemails">Submit bill</button>
+          </center>
+        </div>
+      </div>
+    </div>
+
+    {{!-- VIEW BILLS CARD --}}
+    <div class="card" id="viewbills">
+      <div class="card-body-addbill">
+        View your bills,
+      </div>
+      <div class="username"></div>
+
+      <hr>
+
+      {{!-- dashboard --}}
+      <div class="row">
+        <table id="current-bills" class="table table-hover table-dark">
+          <p class="dashboard" id="billdetails">Bill Details</p>
+          <thead>
+            <tr>
+              <th scope="col" class="viewtable">ID</th>
+              <th scope="col" class="viewtable">Bill</th>
+              <th scope="col" class="viewtable">Company</th>
+              <th scope="col" class="viewtable">Bill total</th>
+              <th scope="col" class="viewtable">You owe</th>
+              <th scope="col" class="viewtable">Paid</th>
+              {{!-- <th scope="col" id="addPayersHeader" class="viewtable">Add payers</th>
+              <th scope="col" id="viewDetailsHeader" class="viewtable">Details</th>
+              <th scope="col" class="viewtable">Pay bill</th> --}}
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+
+      {{!-- bill details modal --}}
+       <div class="modal" tabindex="-1" role="dialog" id="billDetailModal">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="w3-container w3-padding-32" id="contact">
+              <h5 class="w3-border-bottom w3-border-light-grey w3-padding-16" id="divvyfont">
+                Bill Details
+              </h5>
+              <center>
+                <div class="modal-body">
+                  <div id="viewBill"></div>
+                </div>
+                <button type="button" class="btn btn-dark closeBillDetails" data-dismiss="modal">Close</button>
+              </center>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr>
+
+      {{!-- add bill button --}}
+      <div class="row">
+        <div class="col-md-6">
+        <button id="addnewbill" class="btn btn-dark" type="submit">Add a new bill</button>
+        </div>
+      {{!-- Refresh Bills View --}}
+        <div class="col-md-6">
+        <button id="refresh-bills" class="btn btn-dark" type="submit">Refresh Bills</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- END CONTAINER DIV  -->
+  </div>
+
+</body>
