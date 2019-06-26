@@ -3,6 +3,7 @@ const logger = require('morgan');
 const mongoose = require('mongoose');
 const exphbs = require('express-handlebars');
 
+const router = require('./routes/router');
 
 // Initialize Express
 const app = express();
@@ -11,6 +12,8 @@ const PORT = process.env.PORT || 3000;
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/mongoscraper';
 
 // Configure middleware
+app.use(router);
+
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
