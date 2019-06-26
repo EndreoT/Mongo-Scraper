@@ -12,4 +12,10 @@ router.get('/articles/:id', controller.getArticle);
 
 router.post('/articles/:id', controller.saveNote);
 
+router.delete('/articles/:id', controller.deleteArticle);
+
+router.get('/notes/:id', controller.getNote);
+
+router.delete('/notes/:id', controller.deleteNote);
+
 module.exports = router;

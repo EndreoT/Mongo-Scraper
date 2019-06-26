@@ -1,12 +1,9 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
 // Save a reference to the Schema constructor
-var Schema = mongoose.Schema;
+const Schema = mongoose.Schema;
 
-// Using the Schema constructor, create a new UserSchema object
-// This is similar to a Sequelize model
-var ArticleSchema = new Schema({
-  // `title` is required and of type String
+const ArticleSchema = new Schema({
   headline: {
     type: String,
     required: true,
@@ -16,7 +13,6 @@ var ArticleSchema = new Schema({
     type: String,
     required: true
   },
-  // `link` is required and of type String
   url: {
     type: String,
     required: true
@@ -25,7 +21,7 @@ var ArticleSchema = new Schema({
 );
 
 // Reverse population lookup since Note models have an article id property
-ArticleSchema.virtual('notes', {
+ArticleSchema.virtual('notes', { // population name
   ref: 'Note', // The model to use
   localField: '_id', // Your local field, like a `FOREIGN KEY` in RDS
   foreignField: 'article', // Your foreign field which `localField` linked to. Like `REFERENCES` in RDS
@@ -35,7 +31,7 @@ ArticleSchema.virtual('notes', {
 });
 
 // This creates our model from the above schema, using mongoose's model method
-var Article = mongoose.model('Article', ArticleSchema);
+const Article = mongoose.model('Article', ArticleSchema);
 
 // Export the Article model
 module.exports = Article;
