@@ -1,49 +1,17 @@
-const axios = require('axios');
-const cheerio = require('cheerio');
-
 // Require all models
 const Article = require('../models/Article');
 const Note = require('../models/Note');
 
-const scrapeUrl = 'https://www.kiro7.com/news';
 
-
-exports.scrape = function (req, res) {
-  // First, we grab the body of the html with axios
-  axios.get(scrapeUrl).then(function (response) {
-    // Then, we load that into cheerio and save it to $ for a shorthand selector
-    const $ = cheerio.load(response.data);
-
-    let numArticles = 0;
-
-    $('#main-content').find($('#column-7')).find($('.list.media')).find('li').each(function (i, element) {
-      numArticles++;
-
-      const article = {};
-
-      const headline = $(element).find($('a')).attr('title');
-      const summary = $(element).find($('.abstract.dotdotdot-crop')).text() || 'No summary provided.';
-      const url = $(element).find($('a')).attr('href');
-
-      article.headline = headline;
-      article.summary = summary;
-      article.url = url;
-
-      // Create a new Article using the `result` object built from scraping
-      Article.create(article)
-        .then(function (dbArticle) {
-          // View the added result in the console
-          console.log(dbArticle);
-        })
-        .catch(function (err) {
-          // If an error occurred, log it
-          console.log(err);
-        });
+exports.saveArticle = function (req, res) {
+  Article.create(req.body)
+    .then(function (article) {
+      res.json(article);
+    })
+    .catch(function (err) {
+      // If an error occurred, log it
+      console.log(err);
     });
-
-    // Send a message to the client
-    res.json(`Successfully scraped ${numArticles} articles!`);
-  });
 };
 
 // Route for getting all Articles from the db

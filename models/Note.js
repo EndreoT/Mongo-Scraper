@@ -7,7 +7,9 @@ const NoteSchema = new Schema({
   body: {
     type: String,
     required: true,
-    trim: true
+    trim: true,
+    minlength: 1,
+    maxlength: 250,
   },
   // `article` is an object that stores a article id
   // The ref property links the ObjectId to the article model
