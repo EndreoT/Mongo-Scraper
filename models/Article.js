@@ -8,14 +8,17 @@ const ArticleSchema = new Schema({
     type: String,
     required: true,
     unique: true,
+    trim: true,
   },
   summary: {
     type: String,
-    required: true
+    required: true,
+    trim: true,
   },
   url: {
     type: String,
-    required: true
+    required: true,
+    trim: true,
   },
 }, { toJSON: { virtuals: true } }
 );

@@ -1,4 +1,4 @@
-// const Article = require('../models/Article');
+const Article = require('../models/Article');
 // const controller = require('./controller')
 const axios = require('axios');
 const cheerio = require('cheerio');
@@ -32,17 +32,18 @@ exports.scrape = function (req, res) {
 
     // Send a message to the client
     // res.json(`Successfully scraped ${numArticles} articles!`);
-    console.log(articles)
-    res.render('index', {articles: articles});
+    console.log(articles);
+    res.render('index', { articles: articles });
     // return articles;
   });
 };
 
-// exports.index = function (req, res) {
-  
-//   res.render('index', { articles: controller.scrape() });
-//   // Article.find({})
-//   //   .then(articles => {
-//   //     res.render('index', { articles: articles });
-//   //   });
-// };
+exports.saved = function (req, res) {
+  Article.find({})
+    .then(articles => {
+      res.render('index', { articles });
+
+    });
+
+
+};
