@@ -7,6 +7,7 @@ $(document).ready(function () {
   const createArticleUrl = baseUrl + 'articles/';
   const deleteArticleUrl = baseUrl + 'articles/';
   const getArticleNotesUrl = baseUrl + 'articles/';
+  const saveArticleUrl = baseUrl + 'articles/';
 
   const notesElem = $('#notes');
 
@@ -64,12 +65,7 @@ $(document).ready(function () {
         createNoteLiItem(note);
       });
       $('#notes-modal').modal('show');
-
     });
-
-
-
-
   });
 
   $(document).click('.delete-article', function (event) {
@@ -89,9 +85,20 @@ $(document).ready(function () {
     });
 
     buttonPressed.parent().remove();
-
-
-
   });
+
+  $('#save-note').click((event) => {
+    event.preventDefault();
+    const articleId =  $('#save-note').attr('data-article-id');
+    const noteText = $('#note-text').val().trim();
+    $.ajax({
+      type: 'POST',
+      url: saveArticleUrl + articleId,
+      data: {body: noteText},
+    }).then(note => {
+      console.log(note);
+      createNoteLiItem(note)
+    });
+  })
 
 });
