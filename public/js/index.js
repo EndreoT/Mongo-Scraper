@@ -1,9 +1,9 @@
 $(document).ready(function () {
-  // const localhostUrl = 'http://localhost:3000/';
-  const productionUrl = 'https://mongo-scrape-it.herokuapp.com/';
+  const localhostUrl = 'http://localhost:3000/';
+  // const productionUrl = 'https://mongo-scrape-it.herokuapp.com/';
 
-  // const baseUrl = localhostUrl;
-  const baseUrl = productionUrl;
+  const baseUrl = localhostUrl;
+  // const baseUrl = productionUrl;
 
   const createArticleUrl = baseUrl + 'articles/';
   const deleteArticleUrl = baseUrl + 'articles/';
