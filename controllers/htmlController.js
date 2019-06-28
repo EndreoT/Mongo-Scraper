@@ -33,7 +33,7 @@ exports.scrape = function (req, res) {
     // Send a message to the client
     // res.json(`Successfully scraped ${numArticles} articles!`);
     console.log(articles);
-    res.render('index', { articles: articles });
+    res.render('scrape', { articles: articles });
     // return articles;
   });
 };
@@ -41,7 +41,7 @@ exports.scrape = function (req, res) {
 exports.saved = function (req, res) {
   Article.find({})
     .then(articles => {
-      res.render('index', { articles });
+      res.render('saved', { articles });
 
     });
 

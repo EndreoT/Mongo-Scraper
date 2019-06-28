@@ -40,10 +40,15 @@ exports.getArticle = function (req, res) {
 };
 
 exports.deleteArticle = function (req, res) {
+  const articleId = req.params.id;
   Article
-    .deleteOne({ _id: req.params.id })
-    .then(article => {
-      return res.json(article);
+    .deleteOne({ _id: articleId })
+    .then(() => {
+      Note
+        .deleteMany({article: articleId})
+        .then(notes => {
+          res.json(notes);
+        });
     }).catch(err => {
       console.log(err);
       res.json(err);

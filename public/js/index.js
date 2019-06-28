@@ -8,6 +8,7 @@ $(document).ready(function () {
   const deleteArticleUrl = baseUrl + 'articles/';
   const getArticleNotesUrl = baseUrl + 'articles/';
   const saveArticleUrl = baseUrl + 'articles/';
+  const deleteNoteUrl = baseUrl + 'notes/';
 
   const notesElem = $('#notes');
 
@@ -21,13 +22,12 @@ $(document).ready(function () {
     const url = buttonPressed.siblings('.headline').find('a').attr('href');
     const summary = buttonPressed.siblings('.summary').text();
 
-
-
     const article = {
       headline,
       url,
       summary,
     };
+
     $.ajax({
       type: 'POST',
       url: createArticleUrl,
@@ -37,13 +37,14 @@ $(document).ready(function () {
     });
 
     buttonPressed.parent().remove();
-
-
   });
 
   function createNoteLiItem(note) {
     const li = $('<li class="list-group-item">');
     li.text(note.body);
+    const deleteNoteBtn = $('<button class="btn btn-danger delete-note">').text('Delete Note')
+    deleteNoteBtn.attr('data-note-id', note._id);
+    li.append(deleteNoteBtn)
     notesElem.append(li);
   }
 
@@ -59,7 +60,6 @@ $(document).ready(function () {
       type: 'GET',
       url: getArticleNotesUrl + articleId,
     }).then(article => {
-
       notesElem.empty();
       article.notes.forEach(note => {
         createNoteLiItem(note);
@@ -76,7 +76,6 @@ $(document).ready(function () {
     }
     const articleId = buttonPressed.attr('data-article-id');
 
-
     $.ajax({
       type: 'DELETE',
       url: deleteArticleUrl + articleId,
@@ -89,16 +88,34 @@ $(document).ready(function () {
 
   $('#save-note').click((event) => {
     event.preventDefault();
-    const articleId =  $('#save-note').attr('data-article-id');
+    const articleId = $('#save-note').attr('data-article-id');
     const noteText = $('#note-text').val().trim();
+    $('#note-text').val('');
+
     $.ajax({
       type: 'POST',
       url: saveArticleUrl + articleId,
       data: {body: noteText},
     }).then(note => {
-      console.log(note);
-      createNoteLiItem(note)
+      createNoteLiItem(note);
     });
-  })
+  });
+
+  $(document).click('.delete-note', function (event) {
+    event.preventDefault();
+    const buttonPressed = $(event.target);
+    if (!buttonPressed.hasClass('delete-note')) {
+      return;
+    }
+    const noteId = buttonPressed.attr('data-note-id');
+
+    $.ajax({
+      type: 'DELETE',
+      url: deleteNoteUrl + noteId,
+    }).then((note) => {
+      console.log(note)
+      buttonPressed.parent().remove();
+    });
+  });
 
 });

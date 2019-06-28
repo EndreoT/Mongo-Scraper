@@ -9,7 +9,6 @@ router.get('/', htmlController.scrape);
 
 router.get('/saved', htmlController.saved);
 
-// router.get('/scrape', controller.scrape);
 
 router.get('/articles', controller.getAllArticles);
 
