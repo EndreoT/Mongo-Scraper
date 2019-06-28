@@ -1,8 +1,9 @@
 $(document).ready(function () {
-  const localhostUrl = 'http://localhost:3000/';
-  // const productionUrl = 'https://mongo-scrape-it.herokuapp.com/';
+  // const localhostUrl = 'http://localhost:3000/';
+  const productionUrl = 'https://mongo-scrape-it.herokuapp.com/';
 
-  const baseUrl = localhostUrl;
+  // const baseUrl = localhostUrl;
+  const baseUrl = productionUrl;
 
   const createArticleUrl = baseUrl + 'articles/';
   const deleteArticleUrl = baseUrl + 'articles/';
@@ -42,9 +43,9 @@ $(document).ready(function () {
   function createNoteLiItem(note) {
     const li = $('<li class="list-group-item">');
     li.text(note.body);
-    const deleteNoteBtn = $('<button class="btn btn-danger delete-note">').text('Delete Note')
+    const deleteNoteBtn = $('<button class="btn btn-danger delete-note">').text('Delete Note');
     deleteNoteBtn.attr('data-note-id', note._id);
-    li.append(deleteNoteBtn)
+    li.append(deleteNoteBtn);
     notesElem.append(li);
   }
 
@@ -113,7 +114,7 @@ $(document).ready(function () {
       type: 'DELETE',
       url: deleteNoteUrl + noteId,
     }).then((note) => {
-      console.log(note)
+      console.log(note);
       buttonPressed.parent().remove();
     });
   });

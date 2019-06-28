@@ -1,7 +1,8 @@
-const Article = require('../models/Article');
-// const controller = require('./controller')
 const axios = require('axios');
 const cheerio = require('cheerio');
+
+const Article = require('../models/Article');
+
 
 const scrapeUrl = 'https://www.kiro7.com/news';
 
@@ -11,11 +12,9 @@ exports.scrape = function (req, res) {
     // Then, we load that into cheerio and save it to $ for a shorthand selector
     const $ = cheerio.load(response.data);
 
-    let numArticles = 0;
     const articles = [];
 
     $('#main-content').find($('#column-7')).find($('.list.media')).find('li').each(function (i, element) {
-      numArticles++;
 
       const article = {};
 
@@ -31,10 +30,7 @@ exports.scrape = function (req, res) {
     });
 
     // Send a message to the client
-    // res.json(`Successfully scraped ${numArticles} articles!`);
-    console.log(articles);
     res.render('scrape', { articles: articles });
-    // return articles;
   });
 };
 
@@ -42,8 +38,5 @@ exports.saved = function (req, res) {
   Article.find({})
     .then(articles => {
       res.render('saved', { articles });
-
     });
-
-
 };
