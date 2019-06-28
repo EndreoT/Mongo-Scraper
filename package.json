@@ -4,7 +4,7 @@
   "description": "Mongo Scraper",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node index.js",
     "lint": "eslint --quiet .",
     "fix": "eslint --fix .",
     "watch": "nodemon server.js"
