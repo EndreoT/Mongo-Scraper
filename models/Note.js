@@ -13,7 +13,7 @@ const NoteSchema = new Schema({
   },
   // `article` is an object that stores a article id
   // The ref property links the ObjectId to the article model
-  // This allows us to populate the article with an associated article
+  // This allows us to populate the note with an associated article
   article: {
     type: Schema.Types.ObjectId,
     ref: 'Article',

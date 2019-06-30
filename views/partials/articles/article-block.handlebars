@@ -1,21 +1,21 @@
+{{!-- Show article if in is in DB --}}
 {{#if _id}}
-{{!-- <div class="col-5 text-right"> --}}
+
 <li class="list-group-item">
-		<div class="headline">
+	<div class="headline">
 		<a target="_blank" href="{{this.url}}">{{this.headline}}</a>
 	</div>
 	<div class="summary">
 		{{this.summary}}
 	</div>
-	<button data-article-id="{{this.id}}" type="button" class="btn btn-info article-notes" >Articles Notes</button>
+	<button data-article-id="{{this.id}}" type="button" class="btn btn-info article-notes">Articles Notes</button>
 	<button data-article-id="{{this.id}}" type="button" class="btn btn-danger delete-article">Delete from saved</button>
 </li>
 
-{{!-- </div> --}}
 {{/if}}
 
+{{!-- Show article if only scraped --}}
 {{#unless _id}}
-{{!-- <div class="col-5 text-right"> --}}
 
 <li class="list-group-item">
 	<div class="headline">
@@ -27,5 +27,5 @@
 	<button data-headline="{{this.headline}}" type="button" class="btn btn-success save-article">Save Article</button>
 </li>
 
-{{!-- </div> --}}
+
 {{/unless}}

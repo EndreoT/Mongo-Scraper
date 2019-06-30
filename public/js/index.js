@@ -1,9 +1,10 @@
-$(document).ready(function () {
-  const localhostUrl = 'http://localhost:3000/';
-  // const productionUrl = 'https://mongo-scrape-it.herokuapp.com/';
+// const localhostUrl = 'http://localhost:3000/';
+const productionUrl = 'https://mongo-scrape-it.herokuapp.com/';
 
-  const baseUrl = localhostUrl;
-  // const baseUrl = productionUrl;
+// const baseUrl = localhostUrl;
+const baseUrl = productionUrl;
+
+$(document).ready(function () {
 
   const createArticleUrl = baseUrl + 'articles/';
   const deleteArticleUrl = baseUrl + 'articles/';
@@ -13,6 +14,17 @@ $(document).ready(function () {
 
   const notesElem = $('#notes');
 
+  // Create note on page
+  function createNoteLiItem(note) {
+    const li = $('<li class="list-group-item">');
+    const noteBody = $('<p>').text(note.body);
+    const deleteNoteBtn = $('<button class="btn btn-danger delete-note">').text('Delete Note');
+    deleteNoteBtn.attr('data-note-id', note._id);
+    li.append(noteBody, deleteNoteBtn);
+    notesElem.append(li);
+  }
+
+  // Save article handler
   $(document).on('click', '.save-article', function (event) {
     event.preventDefault();
     const buttonPressed = $(event.target);
@@ -37,18 +49,11 @@ $(document).ready(function () {
       console.log(article);
     });
 
+    // Remove article from DOM
     buttonPressed.parent().remove();
   });
 
-  function createNoteLiItem(note) {
-    const li = $('<li class="list-group-item">');
-    li.text(note.body);
-    const deleteNoteBtn = $('<button class="btn btn-danger delete-note">').text('Delete Note');
-    deleteNoteBtn.attr('data-note-id', note._id);
-    li.append(deleteNoteBtn);
-    notesElem.append(li);
-  }
-
+  // Show article notes modal
   $(document).on('click', '.article-notes', function (event) {
     event.preventDefault();
     const buttonPressed = $(event.target);
@@ -65,10 +70,12 @@ $(document).ready(function () {
       article.notes.forEach(note => {
         createNoteLiItem(note);
       });
+
       $('#notes-modal').modal('show');
     });
   });
 
+  // Remove article from DB and from page
   $(document).on('click', '.delete-article', function (event) {
     event.preventDefault();
     const buttonPressed = $(event.target);
@@ -87,11 +94,12 @@ $(document).ready(function () {
     buttonPressed.parent().remove();
   });
 
+  // Save note for article
   $('#save-note').click((event) => {
     event.preventDefault();
     const articleId = $('#save-note').attr('data-article-id');
-    const noteText = $('#note-text').val().trim();
-    $('#note-text').val('');
+    const noteText = $('#note-text-input').val().trim();
+    $('#note-text-input').val('');
 
     $.ajax({
       type: 'POST',
@@ -102,6 +110,7 @@ $(document).ready(function () {
     });
   });
 
+  // Delete note from article
   $(document).on('click', '.delete-note', function (event) {
     event.preventDefault();
     const buttonPressed = $(event.target);

@@ -5,8 +5,12 @@ body {background-color: rgba(250, 48, 34, 0.911);}
 }
 
 .scroll {
-  height:150px;
+  height:250px;
   overflow-y: scroll;
+}
+
+#note-text-input {
+  padding: 5px;
 }
 
 .parallax { 

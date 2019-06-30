@@ -5,11 +5,12 @@ const htmlController = require('../controllers/htmlController');
 
 const router = express.Router();
 
+// HTML routes
 router.get('/', htmlController.scrape);
 
 router.get('/saved', htmlController.saved);
 
-
+// Article and Note routes
 router.get('/articles', controller.getAllArticles);
 
 router.get('/articles/:id', controller.getArticle);

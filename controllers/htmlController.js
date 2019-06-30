@@ -6,6 +6,7 @@ const Article = require('../models/Article');
 
 const scrapeUrl = 'https://www.kiro7.com/news';
 
+// Scrape articles from Kiro 7 News
 exports.scrape = function (req, res) {
   // First, we grab the body of the html with axios
   axios.get(scrapeUrl).then(function (response) {
@@ -34,6 +35,7 @@ exports.scrape = function (req, res) {
   });
 };
 
+// Get all saved articles
 exports.saved = function (req, res) {
   console.log('saved');
   Article.find({})

@@ -17,7 +17,7 @@ exports.saveArticle = function (req, res) {
 // Route for getting all Articles from the db
 exports.getAllArticles = function (req, res) {
   Article.find({})
-    .populate('notes')
+    .populate('notes') // reverse lookup for notes
     .then(articles => {
       return res.json(articles);
     }).catch(err => {
@@ -43,9 +43,9 @@ exports.deleteArticle = function (req, res) {
   const articleId = req.params.id;
   Article
     .deleteOne({ _id: articleId })
-    .then(() => {
+    .then(() => { // Delete all notes associated with deleted article
       Note
-        .deleteMany({article: articleId})
+        .deleteMany({ article: articleId })
         .then(notes => {
           res.json(notes);
         });
