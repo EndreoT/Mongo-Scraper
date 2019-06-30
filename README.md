@@ -3,6 +3,8 @@
 ### Deployed link
 https://mongo-scrape-it.herokuapp.com/saved
 
+![](./public/images/site-example.PNG)
+
 ## Description
 Scrape articles from Kiro 7 news, save articles, and save notes for articles.
 
