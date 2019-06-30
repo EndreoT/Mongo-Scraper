@@ -1,4 +1,24 @@
+body {background-color: rgba(250, 48, 34, 0.911);}
+
+.navbar {
+  color: white;
+}
+
 .scroll {
   height:150px;
   overflow-y: scroll;
+}
+
+.parallax { 
+  /* The image used */
+  background-image: url("../images/newspaper-37782_1280.png");
+
+  /* Set a specific height */
+  height: 500px; 
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
