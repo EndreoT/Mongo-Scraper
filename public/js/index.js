@@ -13,7 +13,7 @@ $(document).ready(function () {
 
   const notesElem = $('#notes');
 
-  $(document).click('.save-article', function (event) {
+  $(document).on('click', '.save-article', function (event) {
     event.preventDefault();
     const buttonPressed = $(event.target);
     if (!buttonPressed.hasClass('save-article')) { // Check if the button is pressed and not anywhere else on the document
@@ -49,7 +49,7 @@ $(document).ready(function () {
     notesElem.append(li);
   }
 
-  $(document).click('.article-notes', function (event) {
+  $(document).on('click', '.article-notes', function (event) {
     event.preventDefault();
     const buttonPressed = $(event.target);
     if (!buttonPressed.hasClass('article-notes')) {
@@ -69,7 +69,7 @@ $(document).ready(function () {
     });
   });
 
-  $(document).click('.delete-article', function (event) {
+  $(document).on('click', '.delete-article', function (event) {
     event.preventDefault();
     const buttonPressed = $(event.target);
     if (!buttonPressed.hasClass('delete-article')) {
@@ -102,7 +102,7 @@ $(document).ready(function () {
     });
   });
 
-  $(document).click('.delete-note', function (event) {
+  $(document).on('click', '.delete-note', function (event) {
     event.preventDefault();
     const buttonPressed = $(event.target);
     if (!buttonPressed.hasClass('delete-note')) {

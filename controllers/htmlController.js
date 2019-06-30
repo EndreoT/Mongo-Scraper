@@ -35,6 +35,7 @@ exports.scrape = function (req, res) {
 };
 
 exports.saved = function (req, res) {
+  console.log('saved');
   Article.find({})
     .then(articles => {
       res.render('saved', { articles });
