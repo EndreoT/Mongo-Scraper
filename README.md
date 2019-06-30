@@ -1,7 +1,7 @@
 # Mongo Scraper
 
 ### Deployed link
-https://mongo-scrape-it.herokuapp.com/saved
+https://mongo-scrape-it.herokuapp.com
 
 ![](./public/images/site-example.PNG)
 
